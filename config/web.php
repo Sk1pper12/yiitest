@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'Additional Paid Services',
     'basePath' => dirname(__DIR__),
     'homeUrl' => '/',
     'bootstrap' => ['log'],
@@ -50,10 +51,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                '/about' => 'site/about',
-                '/contact' => 'site/contact',
-                '/login' => 'site/login',
-                '/logout' => 'site/logout',
+                '<action:\w+>' => 'site/<action>',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
