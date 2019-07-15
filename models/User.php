@@ -2,7 +2,25 @@
 
 namespace app\models;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+use Yii;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
+use yii\base\NotSupportedException;
+
+/**
+* This is the model class for table "{{%User}}".
+*
+* @property int $user_id
+* @property int $dept_id
+* @property string $login
+* @property string $password
+* @property string $surname
+*
+* @property Dept $dept
+* @property UserGroup[] $userGroups
+*/
+
+class User extends ActiveRecord implements IdentityInterface
 {
     public $id;
     public $username;
@@ -27,6 +45,57 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
         ],
     ];
 
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return '{{%User}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['dept_id'], 'integer'],
+            [['login', 'password'], 'required'],
+            [['login', 'surname'], 'string', 'max' => 50],
+            [['password'], 'string', 'max' => 100],
+            [['dept_id'], 'exist', 'skipOnError' => true, 'targetClass' => Dept::className(), 'targetAttribute' => ['dept_id' => 'dept_id']],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'user_id' => 'ID користувача',
+            'dept_id' => 'ID підрозділу',
+            'login' => 'Логін',
+            'password' => 'Пароль',
+            'surname' => 'Прізвище',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDept()
+    {
+        return $this->hasOne(Dept::className(), ['dept_id' => 'dept_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserGroups()
+    {
+        return $this->hasMany(UserGroup::className(), ['user_id' => 'user_id']);
+    }
 
     /**
      * {@inheritdoc}
