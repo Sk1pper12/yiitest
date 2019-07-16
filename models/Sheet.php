@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\db\Query;
 
 /**
  * This is the model class for table "{{%Sheet}}".
@@ -23,6 +25,13 @@ use yii\db\ActiveRecord;
  */
 class Sheet extends ActiveRecord
 {
+    const SERVICE_INFORMATION = 'report1';
+    const SERVICE_DISTRIBUTION = 'report2';
+    const DRAFT = 1;
+    const PREPARED_FOR_BUHG = 2;
+    const PREPARED_FOR_VMPP = 3;
+    const VERIFIED = 4;
+
     /**
      * {@inheritdoc}
      */
@@ -78,5 +87,45 @@ class Sheet extends ActiveRecord
     public function getDept()
     {
         return $this->hasOne(Dept::className(), ['dept_id' => 'dept_id']);
+    }
+
+    public static function getDataSheet($sheet_id, $type)
+    {
+
+    }
+
+    private static function getReport1($sheet_id)
+    {
+
+    }
+
+    private static function getReport2($sheet_id)
+    {
+
+    }
+
+    private static function getAdoptedResponse($report, $params, $type)
+    {
+
+    }
+
+    private static function getOutputDistribution($distribution_set, $distribution_names_set)
+    {
+
+    }
+
+    private static function getDistributionColumnsSum($result, $output_distribution)
+    {
+
+    }
+
+    public function getSheetStatesList()
+    {
+
+    }
+
+    public function getSheetState($sheetState)
+    {
+        
     }
 }

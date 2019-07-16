@@ -22,6 +22,18 @@ use yii\base\NotSupportedException;
 
 class User extends ActiveRecord implements IdentityInterface
 {
+    const STRUCT_DEPT_USER = 1;
+    const BUHG_DEPT_USER = 2;
+    const VMPP_DEPT_USER = 4;
+    const ADMIN_USER = 8;
+
+    public static $roles = [
+        self::STRUCT_DEPT_USER => 'Структурний підрозділ',
+        self::BUHG_DEPT_USER => 'Бухгалтерія',
+        self::VMPP_DEPT_USER => 'Відділ моніторингу',
+        self::ADMIN_USER => 'Адміністратор',
+    ];
+
     public $id;
     public $username;
     public $password;

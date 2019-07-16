@@ -71,7 +71,7 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; APS <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right"></p>
     </div>
 </footer>
 
