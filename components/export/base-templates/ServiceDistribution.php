@@ -29,7 +29,7 @@ echo "</tr>";
 echo "<tr>";
 foreach ($distribution_names as $dept_name) {
     if (isset($dept_name)) {
-        echo "<td colspan='6'>" . "субрахунок підрозділу $dept_name" . "</td>";
+        echo "<td colspan='6'>" . "субрахунок підрозділу " . $dept_name . "</td>";
     }
 }
 echo "</tr>";
