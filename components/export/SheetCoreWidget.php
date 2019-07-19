@@ -5,7 +5,7 @@ namespace app\components;
 use yii\base\Widget;
 use yii\helpers\Html;
 
-class SheetCore extends Widget
+class SheetCoreWidget extends Widget
 {
     public function init()
     {

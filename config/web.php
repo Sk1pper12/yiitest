@@ -8,7 +8,7 @@ $config = [
     'name' => 'Additional Paid Services',
     'basePath' => dirname(__DIR__),
     'homeUrl' => '/',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'expenseProcessor'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -55,6 +55,12 @@ $config = [
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
+        'expenseProcessor' => [
+            'class' => 'app\components\ExpenseProcessor',
+        ],
+    ],
+    'aliases' => [
+        '@export' => '@app/components/export',
     ],
     'params' => $params,
 ];

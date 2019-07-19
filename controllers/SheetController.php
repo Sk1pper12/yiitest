@@ -124,4 +124,45 @@ class SheetController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionReport($sheet_id, $type)
+    {
+        $model = $this->findModel($sheet_id);
+        $report = Sheet::getDataSheet($sheet_id, $type);
+        $sheet_dept_name = $model->dept->dept_name;
+        $sheet_time_start = $model->sheet_time_start;
+        $sheet_time_end = $model->sheet_time_end;
+        if ($type == Sheet::SERVICE_INFORMATION) {
+            return $this->render('service-info', [
+                'sheet_dept_name' => $sheet_dept_name,
+                'sheet_time_start' => $sheet_time_start,
+                'sheet_time_end' => $sheet_time_end,
+                'result' => $report['result'],
+            ]);
+        } elseif ($type == Sheet::SERVICE_DISTRIBUTION) {
+            return $this->render('service-dist', [
+                'sheet_dept_name' => $sheet_dept_name,
+                'sheet_time_start' => $sheet_time_start,
+                'sheet_time_end' => $sheet_time_end,
+                'result' => $report['result'],
+                'distribution_columns_count' => $report['dist_col_count'],
+                'distribution_names' => $report['dist_names'],
+                'output_distribution' => $report['out_dist'],
+                'sum_values' => $report['column_sum'],
+            ]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionAllSheets()
+    {
+        $searchAllSheets = new SheetSearch();
+        $dataProvider = $searchAllSheets->search(Yii::$app->request->queryParams);
+
+        return $this->render('sheet-grid', [
+            'allSheets' => $searchAllSheets,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }
