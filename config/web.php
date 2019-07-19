@@ -12,6 +12,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@export' => '@app/components/export',
     ],
     'components' => [
         'request' => [
@@ -58,9 +59,6 @@ $config = [
         'expenseProcessor' => [
             'class' => 'app\components\ExpenseProcessor',
         ],
-    ],
-    'aliases' => [
-        '@export' => '@app/components/export',
     ],
     'params' => $params,
 ];
