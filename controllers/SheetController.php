@@ -122,7 +122,7 @@ class SheetController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Запрошувана сторінка не знайдена.');
     }
 
     public function actionReport($sheet_id, $type)
@@ -151,7 +151,7 @@ class SheetController extends Controller
                 'sum_values' => $report['column_sum'],
             ]);
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Запрошувана сторінка не знайдена.');
         }
     }
 
