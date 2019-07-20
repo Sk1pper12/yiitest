@@ -165,4 +165,14 @@ class SheetController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionSheetCoreWidget()
+    {
+        return $this->render('sheet-core-widget');
+    }
+
+    public function actionPrint()
+    {
+        require Yii::getAlias('@vendor') . '/tecnickcom/tcpdf/examples/example_001.php';
+    }
 }
