@@ -173,6 +173,10 @@ class SheetController extends Controller
 
     public function actionPrint()
     {
-        require Yii::getAlias('@vendor') . '/tecnickcom/tcpdf/examples/example_001.php';
+        // require Yii::getAlias('@vendor') . '/tecnickcom/tcpdf/examples/example_001.php';
+        $pdf = new \TCPDF();
+        $pdf->addPage();
+        $pdf->Write(1, 'Base PDF example of using tcpdf library for generating PDF documents.');
+        $pdf->Output('Base-Pdf-Example.pdf');
     }
 }
